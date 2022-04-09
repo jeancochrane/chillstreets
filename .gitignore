@@ -1,0 +1,9 @@
+# OSM data
+*.osm
+*.osm.pbf
+
+# Graph cache
+*.osm-gh
+
+# Editor config
+.idea/
