@@ -48,7 +48,19 @@ graphhopper:
   profiles:
     - name: bike
       vehicle: bike
-      weighting: fastest
+      weighting: custom
+      custom_model: {
+        "priority": [
+          {
+            "if": "road_class == CYCLEWAY",
+            "multiply_by": 5,
+          },
+          {
+            "if": "road_class == RESIDENTIAL || road_class == LIVING_STREET",
+            "multiply_by": 3,
+          }
+        ]
+      }
 
   #  - name: car_with_turn_costs
   #    vehicle: car
