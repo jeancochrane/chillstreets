@@ -1,15 +1,18 @@
 graphhopper:
   # OpenStreetMap input file PBF or XML, can be changed via command line -Ddw.graphhopper.datareader.file=some.pbf
-  datareader.file: ""
+  datareader.file: data/raw/chicago-filtered.osm.pbf
   # Local folder used by graphhopper to store its data
-  graph.location: graph-cache
+  graph.location: data/raw/chicago-filtered.osm-gh
 
   ##### Vehicles #####
 
 
   # More options: foot,hike,bike,bike2,mtb,racingbike,motorcycle,car4wd,wheelchair (comma separated)
   # bike2 takes elevation data into account (like up-hill is slower than down-hill) and requires enabling graph.elevation.provider below.
-  graph.flag_encoders: bike
+  graph.flag_encoders: bike,chillstreets
+
+  # increase the flags to take long
+  graph.bytes_for_flags: 8
 
   # Enable turn restrictions for car or motorcycle.
   # graph.flag_encoders: car|turn_costs=true
