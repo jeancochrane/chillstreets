@@ -6,7 +6,7 @@ import com.graphhopper.util.PMap;
 
 import java.util.List;
 
-public class ChillstreetsFlagEncoder extends CarFlagEncoder {
+public class ChillstreetsFlagEncoder extends BikeFlagEncoder {
 
     public ChillstreetsFlagEncoder() {
         this(5, 5, 0);

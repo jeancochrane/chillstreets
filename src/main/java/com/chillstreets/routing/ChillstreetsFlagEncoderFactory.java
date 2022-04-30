@@ -17,7 +17,7 @@ import com.graphhopper.util.PMap;
 public class ChillstreetsFlagEncoderFactory implements FlagEncoderFactory {
     final String CHILLSTREETS = "chillstreets";
 
-	@Override
+    @Override
     public FlagEncoder createFlagEncoder(String name, PMap configuration) {
         if (name.equals(GENERIC))
             return new DataFlagEncoder(configuration);
@@ -50,7 +50,8 @@ public class ChillstreetsFlagEncoderFactory implements FlagEncoderFactory {
             return new MotorcycleFlagEncoder(configuration);
 
         if (name.equals(CHILLSTREETS))
-        	return new ChillstreetsFlagEncoder(configuration);
+            return new ChillstreetsFlagEncoder(configuration);
 
         throw new IllegalArgumentException("entry in encoder list not supported " + name);
     }
+}

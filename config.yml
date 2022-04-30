@@ -48,22 +48,16 @@ graphhopper:
   #
   # To prevent long running routing queries you should usually enable either speed or hybrid mode for all the given
   # profiles (see below). Otherwise you should at least limit the number of `routing.max_visited_nodes`.
-  profiles:
-    - name: bike
-      vehicle: bike
-      weighting: custom
-      custom_model: {
-        "priority": [
-          {
-            "if": "road_class == CYCLEWAY",
-            "multiply_by": 5,
-          },
-          {
-            "if": "road_class == RESIDENTIAL || road_class == LIVING_STREET",
-            "multiply_by": 3,
-          }
-        ]
-      }
+#  profiles:
+#    - name: bike
+#      vehicle: bike
+#      weighting: custom
+#      custom_model:
+#        priority:
+#          - if: "road_class == CYCLEWAY"
+#            multiply_by: 5
+#          - if: "road_class == RESIDENTIAL || road_class == LIVING_STREET"
+#            multiply_by": 3
 
   #  - name: car_with_turn_costs
   #    vehicle: car
@@ -78,9 +72,8 @@ graphhopper:
   # list you can define for which of the above routing profiles such preparation shall be performed. Note that to support
   # profiles with `turn_costs: true` a more elaborate preparation is required (longer preparation time and more memory
   # usage) and the routing will also be slower than with `turn_costs: false`.
-  profiles_ch:
-    - profile: bike
-  #   - profile: car_with_turn_costs
+#  profiles_ch:
+#    - profile: bike
 
   # Hybrid mode:
   # Similar to speed mode, the hybrid mode (Landmarks, LM) also speeds up routing by doing calculating auxiliary data
@@ -91,7 +84,7 @@ graphhopper:
   # profile for which an LM profile exists. Important: This only will give correct routing results if the weights
   # calculated for the profile are equal or larger (for every edge) than those calculated for the profile that was used
   # for the preparation (`my_other_profile`)
-  profiles_lm: []
+#  profiles_lm: []
 
   ##### Elevation #####
 
@@ -184,28 +177,28 @@ graphhopper:
 
 # Dropwizard server configuration
 server:
-  application_connectors:
+  applicationConnectors:
   - type: http
     port: 8989
     # for security reasons bind to localhost
-    bind_host: localhost
-  request_log:
+    bindHost: localhost
+  requestLog:
       appenders: []
-  admin_connectors:
+  adminConnectors:
   - type: http
     port: 8990
-    bind_host: localhost
+    bindHost: localhost
 # See https://www.dropwizard.io/en/latest/manual/core.html#logging
 logging:
   appenders:
   - type: file
-    time_zone: UTC
-    current_log_filename: logs/graphhopper.log
-    log_format: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    timeZone: UTC
+    currentLogFilename: logs/graphhopper.log
+    logFormat: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
     archive: true
-    archived_log_filename_pattern: ./logs/graphhopper-%d.log.gz
-    archived_file_count: 30
-    never_block: true
+    archivedLogFilenamePattern: ./logs/graphhopper-%d.log.gz
+    archivedFileCount: 30
+    neverBlock: true
   - type: console
-    time_zone: UTC
-    log_format: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    timeZone: UTC
+    logFormat: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"

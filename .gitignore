@@ -7,3 +7,10 @@
 
 # Editor config
 .idea/
+
+# Build
+build
+target/
+
+# Logs
+logs/
