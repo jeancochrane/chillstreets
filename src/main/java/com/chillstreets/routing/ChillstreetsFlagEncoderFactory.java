@@ -1,17 +1,9 @@
 package com.chillstreets.routing;
 
-import com.graphhopper.routing.util.FlagEncoder;
-import com.graphhopper.routing.util.DataFlagEncoder;
-import com.graphhopper.routing.util.CarFlagEncoder;
-import com.graphhopper.routing.util.Car4WDFlagEncoder;
-import com.graphhopper.routing.util.BikeFlagEncoder;
-import com.graphhopper.routing.util.Bike2WeightFlagEncoder;
-import com.graphhopper.routing.util.RacingBikeFlagEncoder;
-import com.graphhopper.routing.util.MountainBikeFlagEncoder;
-import com.graphhopper.routing.util.FootFlagEncoder;
-import com.graphhopper.routing.util.HikeFlagEncoder;
-import com.graphhopper.routing.util.MotorcycleFlagEncoder;
+import com.chillstreets.routing.ChillstreetsTagParser;
+
 import com.graphhopper.routing.util.FlagEncoderFactory;
+import com.graphhopper.routing.util.FlagEncoders;
 import com.graphhopper.util.PMap;
 
 public class ChillstreetsFlagEncoderFactory implements FlagEncoderFactory {
@@ -19,38 +11,41 @@ public class ChillstreetsFlagEncoderFactory implements FlagEncoderFactory {
 
     @Override
     public FlagEncoder createFlagEncoder(String name, PMap configuration) {
-        if (name.equals(GENERIC))
-            return new DataFlagEncoder(configuration);
+        if (name.equals(ROADS))
+            return FlagEncoders.createRoads();
 
-        else if (name.equals(CAR))
-            return new CarFlagEncoder(configuration);
+        if (name.equals(CAR))
+            return FlagEncoders.createCar(configuration);
 
-        else if (name.equals(CAR4WD))
-            return new Car4WDFlagEncoder(configuration);
+        if (name.equals(CAR4WD))
+            return FlagEncoders.createCar4wd(configuration);
 
         if (name.equals(BIKE))
-            return new BikeFlagEncoder(configuration);
+            return FlagEncoders.createBike(configuration);
 
         if (name.equals(BIKE2))
-            return new Bike2WeightFlagEncoder(configuration);
+            return FlagEncoders.createBike2(configuration);
 
         if (name.equals(RACINGBIKE))
-            return new RacingBikeFlagEncoder(configuration);
+            return FlagEncoders.createRacingBike(configuration);
 
         if (name.equals(MOUNTAINBIKE))
-            return new MountainBikeFlagEncoder(configuration);
+            return FlagEncoders.createMountainBike(configuration);
 
         if (name.equals(FOOT))
-            return new FootFlagEncoder(configuration);
+            return FlagEncoders.createFoot(configuration);
 
         if (name.equals(HIKE))
-            return new HikeFlagEncoder(configuration);
+            return FlagEncoders.createHike(configuration);
 
         if (name.equals(MOTORCYCLE))
-            return new MotorcycleFlagEncoder(configuration);
+            return FlagEncoders.createMotorcycle(configuration);
+
+        if (name.equals(WHEELCHAIR))
+            return FlagEncoders.createWheelchair(configuration);
 
         if (name.equals(CHILLSTREETS))
-            return new ChillstreetsFlagEncoder(configuration);
+            return new ChillstreetsTagParser(configuration);
 
         throw new IllegalArgumentException("entry in encoder list not supported " + name);
     }

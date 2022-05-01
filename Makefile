@@ -10,3 +10,7 @@ build:
 
 serve: build
 	java -jar target/chillstreets-0.0.1-SNAPSHOT-jar-with-dependencies.jar server config.yml
+
+clean:
+	rm -f build
+	rm -Rf target/*
